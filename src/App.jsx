@@ -1,4 +1,24 @@
 import React from "react";
+import heroImg from "./assets/hero.jpg";
+
+/**
+ * CENTRALIZED COPY (replace these with your locked narrative when you paste it)
+ * — no more random placeholder text in the component itself.
+ */
+const COPY = {
+  brand: "VIA AUSTER",
+  heroLines: [
+    "EXECUTIVE",
+    "INDUSTRIAL",
+    "CONFIDENCE, NOT HYPE",
+  ],
+  subhead:
+    "Trust and competence first. Build systems that hold under pressure.",
+  ctas: [
+    { label: "CONTACT", href: "#contact", variant: "outline" },
+    { label: "ABOUT", href: "#about", variant: "solid" },
+  ],
+};
 
 const socials = [
   { label: "LinkedIn", href: "#", icon: "in" },
@@ -13,18 +33,53 @@ const rightNav = [
   { label: "TBD", href: "#tbd" },
 ];
 
+function RightRailArrow() {
+  // Simple, clean arrow mark to match the “rail artifact” idea
+  return (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      className="text-neutral-500"
+      aria-hidden="true"
+    >
+      <path
+        d="M5 12h12"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M13 6l6 6-6 6"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function App() {
   return (
     <div className="min-h-screen bg-white text-neutral-900">
+      {/* TOP FRAME / DEPTH (restored) */}
+      <div className="pointer-events-none fixed left-0 right-0 top-0 z-0">
+        <div className="mx-auto max-w-[1400px] px-6">
+          <div className="h-px bg-neutral-200" />
+        </div>
+      </div>
+
       {/* Global page frame */}
-      <div className="mx-auto max-w-[1400px] px-6">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-6">
         <div className="relative min-h-screen py-10">
           {/* LEFT RAIL */}
           <aside className="absolute left-0 top-0 h-full w-[72px]">
             <div className="flex h-full flex-col items-center justify-between py-10">
-              {/* top mark */}
+              {/* top mark + line */}
               <div className="flex flex-col items-center gap-3">
-                <div className="h-8 w-[2px] bg-neutral-200" />
+                <div className="h-10 w-[2px] bg-neutral-200" />
                 <div className="h-8 w-8 rounded-full border border-neutral-200" />
                 <div className="h-10 w-[2px] bg-neutral-200" />
               </div>
@@ -44,33 +99,38 @@ export default function App() {
                 ))}
               </div>
 
-              {/* bottom spacer / line */}
+              {/* bottom line */}
               <div className="h-16 w-[2px] bg-neutral-200" />
             </div>
           </aside>
 
-          {/* RIGHT RAIL (Abbey style) */}
-          <aside className="absolute right-0 top-0 h-full w-[110px]">
+          {/* RIGHT RAIL (Abbey style, corrected spacing/alignment) */}
+          <aside className="absolute right-0 top-0 h-full w-[120px]">
             <div className="relative flex h-full flex-col items-center justify-between py-10">
-              {/* triple vertical lines (visual guides) */}
-              <div className="absolute right-[24px] top-[40px] h-[calc(100%-80px)] w-[40px]">
+              {/* triple vertical lines, aligned to the page frame */}
+              <div className="absolute right-[26px] top-[70px] h-[calc(100%-140px)] w-[48px]">
                 <span className="absolute right-0 top-0 h-full w-[2px] bg-neutral-200" />
-                <span className="absolute right-[14px] top-0 h-full w-[2px] bg-neutral-200" />
-                <span className="absolute right-[28px] top-0 h-full w-[2px] bg-neutral-200" />
+                <span className="absolute right-[16px] top-0 h-full w-[2px] bg-neutral-200" />
+                <span className="absolute right-[32px] top-0 h-full w-[2px] bg-neutral-200" />
+
+                {/* arrow mark positioned on the rail (not random) */}
+                <div className="absolute right-[32px] top-[18%]">
+                  <RightRailArrow />
+                </div>
               </div>
 
               <div />
 
-              {/* rotated nav at bottom, NOT stacked letters */}
-              <nav className="relative z-10 flex flex-col items-center gap-8 pb-2">
+              {/* rotated nav at bottom (reads up), Abbey-like placement */}
+              <nav className="relative z-10 flex flex-col items-center gap-10 pb-2">
                 {rightNav.map((n) => (
                   <a
                     key={n.label}
                     href={n.href}
-                    className="text-[11px] tracking-[0.22em] text-neutral-600 hover:text-neutral-900"
+                    className="text-[11px] tracking-[0.26em] text-neutral-600 hover:text-neutral-900"
                     style={{
                       writingMode: "vertical-rl",
-                      transform: "rotate(180deg)", // reads bottom->top like Abbey examples
+                      transform: "rotate(180deg)",
                     }}
                   >
                     {n.label}
@@ -95,52 +155,76 @@ export default function App() {
             </nav>
           </header>
 
-          {/* CENTER HERO */}
+          {/* HERO */}
           <main className="mx-auto flex max-w-[980px] flex-col items-center justify-center pt-16">
-            {/* minimal brand identity */}
+            {/* Brand mark */}
             <div className="text-center">
               <div className="text-[12px] tracking-[0.22em] text-neutral-500">
-                VIA AUSTER
+                {COPY.brand}
               </div>
-              <h1 className="mt-4 text-[28px] font-medium tracking-tight">
-                Executive industrial systems.
-              </h1>
-              <p className="mx-auto mt-4 max-w-[560px] text-[14px] leading-7 text-neutral-600">
-                Confidence, not hype. Trust and competence first.
+
+              {/* ONE PER LINE + divider (your requirement) */}
+              <div className="mt-6 inline-flex flex-col items-center">
+                {COPY.heroLines.map((line) => (
+                  <div
+                    key={line}
+                    className="text-[22px] font-medium tracking-tight"
+                  >
+                    {line}
+                  </div>
+                ))}
+                <div className="mt-5 h-px w-[140px] bg-neutral-200" />
+              </div>
+
+              <p className="mx-auto mt-5 max-w-[640px] text-[14px] leading-7 text-neutral-600">
+                {COPY.subhead}
               </p>
             </div>
 
-            {/* CENTER IMAGE PLACEHOLDER (this is the “weird video thing” replacement) */}
+            {/* HERO MEDIA — smaller + feathered (no “code block” look) */}
             <div className="mt-10 w-full">
-              <div className="mx-auto aspect-[16/9] w-full max-w-[820px] overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100">
-                {/* If you have an image file later, replace this block with <img ... /> */}
-                <div className="flex h-full w-full items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-[11px] tracking-[0.22em] text-neutral-500">
-                      HERO VISUAL
-                    </div>
-                    <div className="mt-2 text-[13px] text-neutral-600">
-                      Placeholder until the factory image is dropped in
-                    </div>
+              <div className="mx-auto w-full max-w-[740px]">
+                <div className="relative overflow-hidden rounded-2xl">
+                  {/* image */}
+                  <img
+                    src={heroImg}
+                    alt="Via Auster hero"
+                    className="block h-auto w-full"
+                  />
+
+                  {/* feather overlays (makes it feel embedded) */}
+                  <div className="pointer-events-none absolute inset-0">
+                    {/* soft edge vignette */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/0 to-white/35" />
+                    <div className="absolute inset-0 bg-[radial-gradient(closest-side,rgba(255,255,255,0)_55%,rgba(255,255,255,0.55)_100%)]" />
+                    {/* subtle border, not “boxy” */}
+                    <div className="absolute inset-0 rounded-2xl ring-1 ring-neutral-200/70" />
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* minimal CTA row (optional but helps balance like the reference pages) */}
+            {/* CTAs (subdued) */}
             <div className="mt-10 flex items-center gap-3">
-              <a
-                href="#contact"
-                className="rounded-full border border-neutral-300 px-5 py-2 text-[12px] tracking-[0.18em] text-neutral-700 hover:border-neutral-500 hover:text-neutral-900"
-              >
-                CONTACT
-              </a>
-              <a
-                href="#about"
-                className="rounded-full bg-neutral-900 px-5 py-2 text-[12px] tracking-[0.18em] text-white hover:bg-neutral-800"
-              >
-                ABOUT
-              </a>
+              {COPY.ctas.map((c) =>
+                c.variant === "solid" ? (
+                  <a
+                    key={c.label}
+                    href={c.href}
+                    className="rounded-full bg-neutral-900 px-5 py-2 text-[12px] tracking-[0.18em] text-white hover:bg-neutral-800"
+                  >
+                    {c.label}
+                  </a>
+                ) : (
+                  <a
+                    key={c.label}
+                    href={c.href}
+                    className="rounded-full border border-neutral-300 px-5 py-2 text-[12px] tracking-[0.18em] text-neutral-700 hover:border-neutral-500 hover:text-neutral-900"
+                  >
+                    {c.label}
+                  </a>
+                )
+              )}
             </div>
           </main>
         </div>
