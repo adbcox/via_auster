@@ -1,6 +1,8 @@
 import React from "react";
 import heroImg from "./assets/hero.jpg";
-
+<div style={{position:"fixed",top:10,left:10,zIndex:9999,fontSize:12}}>
+  DEPLOY TEST 123
+</div>
 /**
  * CENTRALIZED COPY (replace these with your locked narrative when you paste it)
  * — no more random placeholder text in the component itself.
