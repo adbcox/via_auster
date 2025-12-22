@@ -1,175 +1,144 @@
 import React from "react";
 
-function Pill({ children }) {
+// Hero image is served from /public. Swap the file and/or path when you have the final asset.
+const HERO_SRC = "/hero-placeholder.svg";
+
+function IconButton({ label }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs text-neutral-700">
-      {children}
-    </span>
+    <a
+      href="#"
+      className="group grid h-8 w-8 place-items-center rounded-full border border-neutral-300 text-[10px] font-semibold tracking-widest text-neutral-500 transition hover:border-neutral-400 hover:text-neutral-700"
+      aria-label={label}
+      title={label}
+    >
+      <span className="leading-none">{label}</span>
+    </a>
+  );
+}
+
+function LeftRail() {
+  return (
+    <aside className="absolute left-0 top-0 z-20 flex h-full w-[84px] flex-col items-center justify-between py-8">
+      {/* Top mark (VA) */}
+      <div className="flex flex-col items-center gap-4">
+        <div className="grid h-10 w-10 place-items-center">
+          <span className="text-[22px] font-semibold tracking-tight text-[#1F4E8C]">VA</span>
+        </div>
+        <div className="h-24 w-px bg-neutral-300" />
+      </div>
+
+      {/* Social */}
+      <div className="flex flex-col items-center gap-3">
+        <IconButton label="IN" />
+        <IconButton label="IG" />
+        <IconButton label="X" />
+        <IconButton label="GH" />
+      </div>
+
+      {/* Bottom spacer line */}
+      <div className="flex flex-col items-center gap-4">
+        <div className="h-24 w-px bg-neutral-300" />
+      </div>
+    </aside>
+  );
+}
+
+function RightRail() {
+  return (
+    <aside className="absolute right-0 top-0 z-20 h-full w-[140px]">
+      {/* Vertical guide lines (Abbey-style) */}
+      <div className="absolute right-8 top-0 h-full w-[84px]">
+        <div className="absolute left-0 top-0 h-full w-px bg-neutral-300" />
+        <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-neutral-300" />
+        <div className="absolute right-0 top-0 h-full w-px bg-neutral-300" />
+      </div>
+
+      {/* Top menu aligned between the guides */}
+      <nav className="absolute right-8 top-10 flex w-[84px] items-start justify-between text-[12px] tracking-[0.18em] uppercase text-neutral-500">
+        <a className="hover:text-neutral-800" href="#">Home</a>
+        <a className="hover:text-neutral-800" href="#">About</a>
+        <a className="hover:text-neutral-800" href="#">Work</a>
+      </nav>
+
+      {/* Bottom rotated links (footer nav moved to right spine) */}
+      <div className="absolute right-8 bottom-10 flex w-[84px] items-end justify-between">
+        <a
+          href="#"
+          className="origin-bottom-left -rotate-90 whitespace-nowrap text-[11px] tracking-[0.18em] uppercase text-neutral-500 hover:text-neutral-800"
+        >
+          About
+        </a>
+        <a
+          href="#"
+          className="origin-bottom-left -rotate-90 whitespace-nowrap text-[11px] tracking-[0.18em] uppercase text-neutral-500 hover:text-neutral-800"
+        >
+          Contact
+        </a>
+        <span className="origin-bottom-left -rotate-90 whitespace-nowrap text-[11px] tracking-[0.18em] uppercase text-neutral-400">
+          TBD
+        </span>
+      </div>
+    </aside>
   );
 }
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white text-neutral-900">
-      <header className="sticky top-0 z-10 border-b border-neutral-100 bg-white/80 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-          <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-2xl border border-neutral-200 bg-white shadow-sm" />
-            <div className="leading-tight">
-              <div className="text-sm font-semibold tracking-tight">Via Auster</div>
-              <div className="text-xs text-neutral-500">Minimal white template</div>
-            </div>
+    <div className="min-h-screen bg-[#f6f4ef] text-neutral-900">
+      {/* Hero (single screen) */}
+      <section className="relative mx-auto min-h-screen max-w-[1320px] px-6">
+        <LeftRail />
+        <RightRail />
+
+        {/* Center content column */}
+        <div className="mx-auto flex min-h-screen max-w-[980px] flex-col items-center justify-center gap-6 pt-10">
+          {/* Keep the top header *off* the page per your note (no extra header line). */}
+
+          <header className="text-center">
+            <div className="text-[11px] tracking-[0.3em] uppercase text-neutral-500">Via Auster</div>
+          </header>
+
+          {/* Narrative hero lines */}
+          <div className="text-center">
+            <h1 className="text-[38px] leading-[1.05] tracking-tight md:text-[52px]">
+              Design, Engineering, and Intentional<br className="hidden md:block" />
+              Craft
+            </h1>
+            <p className="mx-auto mt-4 max-w-[720px] text-[14px] leading-6 text-neutral-600 md:text-[15px]">
+              Via Auster is a studio focused on clarity, durability, and quiet excellence — across physical products, digital
+              systems, and built environments.
+            </p>
           </div>
 
-          <nav className="hidden items-center gap-6 text-sm text-neutral-700 md:flex">
-            <a className="hover:text-neutral-900" href="#work">Work</a>
-            <a className="hover:text-neutral-900" href="#about">About</a>
-            <a className="hover:text-neutral-900" href="#contact">Contact</a>
-          </nav>
+          {/* Hero image (replaces the “weird video frame”) */}
+          <figure className="mt-6 w-full max-w-[820px]">
+            <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
+              <img
+                src={HERO_SRC}
+                alt="Hero"
+                className="block h-[360px] w-full object-cover md:h-[420px]"
+                loading="eager"
+              />
+            </div>
+          </figure>
 
-          <a
-            href="#contact"
-            className="rounded-2xl border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-900 shadow-sm hover:bg-neutral-50"
-          >
-            Get in touch
-          </a>
+          {/* Bottom buttons (keep simple for now) */}
+          <div className="mt-2 flex items-center gap-3">
+            <a
+              href="#"
+              className="rounded-full border border-neutral-300 px-5 py-2 text-[12px] tracking-[0.18em] uppercase text-neutral-700 hover:border-neutral-400"
+            >
+              Contact
+            </a>
+            <a
+              href="#"
+              className="rounded-full bg-neutral-900 px-5 py-2 text-[12px] tracking-[0.18em] uppercase text-neutral-100 hover:bg-neutral-800"
+            >
+              About
+            </a>
+          </div>
         </div>
-      </header>
-
-      <main className="mx-auto max-w-5xl px-4">
-        <section className="py-16 md:py-24">
-          <div className="flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
-            <div className="max-w-xl">
-              <div className="mb-4 flex flex-wrap gap-2">
-                <Pill>Clean</Pill>
-                <Pill>Fast</Pill>
-                <Pill>Tailwind</Pill>
-                <Pill>Vite</Pill>
-              </div>
-
-              <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-                A minimal, all‑white landing page you can build on.
-              </h1>
-
-              <p className="mt-5 text-base leading-relaxed text-neutral-600">
-                This starter is intentionally simple: a crisp layout, subtle borders,
-                quiet typography, and a section structure you can iterate on quickly.
-                Replace the placeholder copy and components as you refine the Via Auster brand.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a
-                  className="inline-flex items-center justify-center rounded-2xl bg-neutral-900 px-5 py-3 text-sm font-medium text-white hover:bg-neutral-800"
-                  href="#work"
-                >
-                  View sections
-                </a>
-                <a
-                  className="inline-flex items-center justify-center rounded-2xl border border-neutral-200 bg-white px-5 py-3 text-sm font-medium text-neutral-900 shadow-sm hover:bg-neutral-50"
-                  href="#about"
-                >
-                  What this includes
-                </a>
-              </div>
-            </div>
-
-            <div className="w-full max-w-md">
-              <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
-                <div className="text-sm font-semibold">Quick checklist</div>
-                <ul className="mt-4 space-y-3 text-sm text-neutral-700">
-                  <li className="flex gap-3">
-                    <span className="mt-0.5 inline-block h-2 w-2 rounded-full bg-neutral-900" />
-                    <span>Runs in Codespaces / cloud-only workflows</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="mt-0.5 inline-block h-2 w-2 rounded-full bg-neutral-900" />
-                    <span>Netlify-ready build output: <code className="rounded bg-neutral-50 px-1">dist</code></span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="mt-0.5 inline-block h-2 w-2 rounded-full bg-neutral-900" />
-                    <span>Node pinned via <code className="rounded bg-neutral-50 px-1">netlify.toml</code></span>
-                  </li>
-                </ul>
-
-                <div className="mt-6 rounded-2xl border border-neutral-200 bg-neutral-50 p-4 text-xs text-neutral-600">
-                  Tip: Once deployed, swap these sections with your real brand blocks and keep the structure.
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="work" className="border-t border-neutral-100 py-14">
-          <h2 className="text-xl font-semibold tracking-tight">Work</h2>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-600">
-            Replace these with the first 3–6 “proof” items: product snapshots, devices, R&D notes,
-            or anything that builds credibility fast.
-          </p>
-
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {["Concept → Prototype", "Design System", "Launch Readiness"].map((t) => (
-              <div key={t} className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
-                <div className="text-sm font-semibold">{t}</div>
-                <div className="mt-2 text-sm text-neutral-600">
-                  Short, specific description. One sentence is enough.
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="about" className="border-t border-neutral-100 py-14">
-          <h2 className="text-xl font-semibold tracking-tight">About</h2>
-          <div className="mt-4 grid gap-6 md:grid-cols-2">
-            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
-              <div className="text-sm font-semibold">Minimal by design</div>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-                Everything here is “quiet”: white background, soft borders, readable spacing,
-                and a few reusable components. You can add color later without reworking layout.
-              </p>
-            </div>
-            <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
-              <div className="text-sm font-semibold">Cloud-first workflow</div>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-600">
-                No local build required. You can edit files in GitHub web editor, Codespaces, or a tablet —
-                and let Netlify build from GitHub on every push.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" className="border-t border-neutral-100 py-14">
-          <h2 className="text-xl font-semibold tracking-tight">Contact</h2>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-600">
-            Replace this with your real call-to-action. For now, it’s a simple placeholder.
-          </p>
-
-          <div className="mt-6 rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <div className="text-sm font-semibold">Ready to iterate?</div>
-                <div className="mt-1 text-sm text-neutral-600">
-                  Update copy, sections, and styling — deploy automatically.
-                </div>
-              </div>
-              <a
-                className="inline-flex items-center justify-center rounded-2xl bg-neutral-900 px-5 py-3 text-sm font-medium text-white hover:bg-neutral-800"
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("Replace this button with your real contact flow (email, form, or scheduling).");
-                }}
-              >
-                Contact
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <footer className="border-t border-neutral-100 py-10 text-center text-xs text-neutral-500">
-          © {new Date().getFullYear()} Via Auster. Built with Vite + React + Tailwind.
-        </footer>
-      </main>
+      </section>
     </div>
   );
 }

@@ -2,7 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Minimal, clean defaults */
-:root { color-scheme: light; }
-html, body { height: 100%; }
-body { margin: 0; background: white; }
+:root {
+  --via-bg: #f6f4ef; /* warm white, not stark */
+  --via-ink: #141414;
+  --via-line: rgba(20, 20, 20, 0.12);
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--via-bg);
+}
+
+/* Layout primitives */
+.via-left-rail {
+  width: 92px;
+  border-right: 1px solid var(--via-line);
+  display: flex;
+  flex-direction: column;
+}
+
+.via-right-rail {
+  width: 160px;
+  border-left: 1px solid var(--via-line);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.via-hero-title {
+  font-size: clamp(30px, 3.6vw, 54px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  color: rgba(20, 20, 20, 0.78);
+}
+
+/* Hero media: sized like the original “tablet/video” area — not full-bleed */
+.via-hero-media {
+  border: 1px solid var(--via-line);
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 1px 0 rgba(20, 20, 20, 0.05);
+}
+
+.via-hero-media-inner {
+  height: 260px;
+  border-radius: 12px;
+  background:
+    radial-gradient(1200px 420px at 30% 25%, rgba(20, 20, 20, 0.16), transparent 55%),
+    linear-gradient(135deg, rgba(20, 20, 20, 0.08), rgba(20, 20, 20, 0.02));
+}
+
+/* Abbey-style rotated rail labels: rotate the whole word, do NOT stack letters */
+.via-rail-rotated {
+  display: inline-block;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .via-left-rail {
+    width: 78px;
+  }
+  .via-right-rail {
+    width: 132px;
+  }
+  .via-hero-media-inner {
+    height: 220px;
+  }
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  background: var(--via-bg);
+  color: var(--via-ink);
+}
