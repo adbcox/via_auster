@@ -1,5 +1,5 @@
 import React from "react";
-import heroImg from "./assets/hero.jpg";
+import heroImg from "./assets/hero.png";
 <div style={{position:"fixed",top:10,left:10,zIndex:9999,fontSize:12}}>
   DEPLOY TEST 123
 </div>
