@@ -1,7 +1,7 @@
 import React from "react";
 
 // Hero image is served from /public. Swap the file and/or path when you have the final asset.
-const HERO_SRC = "/hero-placeholder.svg";
+const HERO_SRC = "/hero.png";
 
 function IconButton({ label }) {
   return (
