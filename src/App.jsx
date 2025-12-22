@@ -1,220 +1,146 @@
-import { useMemo, useState } from "react";
+import React from "react";
 
-const NAV = [
+const socials = [
+  { label: "LinkedIn", href: "#", icon: "in" },
+  { label: "Instagram", href: "#", icon: "ig" },
+  { label: "X", href: "#", icon: "x" },
+  { label: "GitHub", href: "#", icon: "gh" },
+];
+
+const rightNav = [
   { label: "ABOUT", href: "#about" },
-  { label: "WORK", href: "#work" },
   { label: "CONTACT", href: "#contact" },
+  { label: "TBD", href: "#tbd" },
 ];
 
 export default function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const signals = useMemo(
-    () => [
-      { k: "STATUS", v: "ACTIVE" },
-      { k: "SIGNAL", v: "CLEAN" },
-      { k: "BUILD", v: "READY" },
-    ],
-    []
-  );
-
   return (
     <div className="min-h-screen bg-white text-neutral-900">
-      {/* LEFT RAIL (kept) */}
-      <aside className="fixed left-0 top-0 h-screen w-16 border-r border-neutral-200 bg-white">
-        <div className="flex h-full flex-col items-center justify-between py-6">
-          <div className="flex flex-col items-center gap-5">
-            <div className="h-9 w-9 rounded-full border border-neutral-300" />
-            <div className="h-6 w-[1px] bg-neutral-200" />
-            <div className="flex flex-col items-center gap-4 text-[10px] tracking-[0.2em] text-neutral-500">
-              <a href="#home" className="rotate-180 [writing-mode:vertical-rl] hover:text-neutral-900">
-                VIA
-              </a>
-              <a href="#work" className="rotate-180 [writing-mode:vertical-rl] hover:text-neutral-900">
-                WORK
-              </a>
-              <a href="#contact" className="rotate-180 [writing-mode:vertical-rl] hover:text-neutral-900">
-                CONTACT
-              </a>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-center gap-3">
-            <div className="h-6 w-[1px] bg-neutral-200" />
-            <div className="text-[10px] tracking-[0.2em] text-neutral-400 rotate-180 [writing-mode:vertical-rl]">
-              2025
-            </div>
-          </div>
-        </div>
-      </aside>
-
-      {/* RIGHT RAIL (3 VERTICAL LINES + SIGNALS) */}
-      <aside className="fixed right-0 top-0 h-screen w-16 border-l border-neutral-200 bg-white">
-        <div className="flex h-full flex-col items-center justify-between py-6">
-          <button
-            aria-label="Menu"
-            onClick={() => setMenuOpen((v) => !v)}
-            className="group flex flex-col items-center justify-center gap-2 rounded-md px-2 py-3 hover:bg-neutral-50"
-          >
-            {/* three VERTICAL lines */}
-            <div className="flex items-center gap-1">
-              <span className="h-10 w-[3px] rounded-full bg-neutral-800 opacity-90 group-hover:opacity-100" />
-              <span className="h-10 w-[3px] rounded-full bg-neutral-800 opacity-60 group-hover:opacity-90" />
-              <span className="h-10 w-[3px] rounded-full bg-neutral-800 opacity-35 group-hover:opacity-75" />
-            </div>
-            <div className="text-[10px] tracking-[0.2em] text-neutral-500">MENU</div>
-          </button>
-
-          <div className="flex flex-col items-center gap-3">
-            <div className="h-6 w-[1px] bg-neutral-200" />
-            <div className="flex flex-col items-center gap-3">
-              {signals.map((s) => (
-                <div key={s.k} className="flex flex-col items-center gap-1">
-                  <div className="text-[9px] tracking-[0.22em] text-neutral-400">{s.k}</div>
-                  <div className="text-[10px] tracking-[0.18em] text-neutral-700">{s.v}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </aside>
-
-      {/* MAIN */}
-      <div className="mx-auto max-w-6xl px-6">
-        {/* give space for fixed rails */}
-        <div className="pl-16 pr-16">
-          {/* TOP BAR: brand left, NAV centered */}
-          <header id="home" className="relative pt-10">
-            <div className="flex items-center justify-between">
-              <div className="text-[12px] tracking-[0.35em] text-neutral-500">
-                VIA AUSTER
+      {/* Global page frame */}
+      <div className="mx-auto max-w-[1400px] px-6">
+        <div className="relative min-h-screen py-10">
+          {/* LEFT RAIL */}
+          <aside className="absolute left-0 top-0 h-full w-[72px]">
+            <div className="flex h-full flex-col items-center justify-between py-10">
+              {/* top mark */}
+              <div className="flex flex-col items-center gap-3">
+                <div className="h-8 w-[2px] bg-neutral-200" />
+                <div className="h-8 w-8 rounded-full border border-neutral-200" />
+                <div className="h-10 w-[2px] bg-neutral-200" />
               </div>
 
-              {/* Centered nav */}
-              <nav className="absolute left-1/2 -translate-x-1/2">
-                <ul className="flex items-center gap-8 text-[11px] tracking-[0.24em] text-neutral-500">
-                  {NAV.map((item) => (
-                    <li key={item.label}>
-                      <a className="hover:text-neutral-900" href={item.href}>
-                        {item.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+              {/* social stack */}
+              <div className="flex flex-col items-center gap-3">
+                {socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 text-[11px] uppercase tracking-wider text-neutral-600 hover:border-neutral-400 hover:text-neutral-900"
+                    aria-label={s.label}
+                    title={s.label}
+                  >
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
+
+              {/* bottom spacer / line */}
+              <div className="h-16 w-[2px] bg-neutral-200" />
+            </div>
+          </aside>
+
+          {/* RIGHT RAIL (Abbey style) */}
+          <aside className="absolute right-0 top-0 h-full w-[110px]">
+            <div className="relative flex h-full flex-col items-center justify-between py-10">
+              {/* triple vertical lines (visual guides) */}
+              <div className="absolute right-[24px] top-[40px] h-[calc(100%-80px)] w-[40px]">
+                <span className="absolute right-0 top-0 h-full w-[2px] bg-neutral-200" />
+                <span className="absolute right-[14px] top-0 h-full w-[2px] bg-neutral-200" />
+                <span className="absolute right-[28px] top-0 h-full w-[2px] bg-neutral-200" />
+              </div>
+
+              <div />
+
+              {/* rotated nav at bottom, NOT stacked letters */}
+              <nav className="relative z-10 flex flex-col items-center gap-8 pb-2">
+                {rightNav.map((n) => (
+                  <a
+                    key={n.label}
+                    href={n.href}
+                    className="text-[11px] tracking-[0.22em] text-neutral-600 hover:text-neutral-900"
+                    style={{
+                      writingMode: "vertical-rl",
+                      transform: "rotate(180deg)", // reads bottom->top like Abbey examples
+                    }}
+                  >
+                    {n.label}
+                  </a>
+                ))}
               </nav>
-
-              {/* small spacer (keeps symmetry) */}
-              <div className="w-[92px]" />
             </div>
+          </aside>
 
-            {/* Menu panel (minimal) */}
-            {menuOpen && (
-              <div className="mt-8 rounded-xl border border-neutral-200 bg-white p-5 shadow-sm">
-                <div className="text-[11px] tracking-[0.22em] text-neutral-500">
-                  NAVIGATION
-                </div>
-                <div className="mt-3 grid gap-2 text-[14px]">
-                  <a className="hover:underline" href="#about" onClick={() => setMenuOpen(false)}>
-                    About
-                  </a>
-                  <a className="hover:underline" href="#work" onClick={() => setMenuOpen(false)}>
-                    Work
-                  </a>
-                  <a className="hover:underline" href="#contact" onClick={() => setMenuOpen(false)}>
-                    Contact
-                  </a>
-                </div>
-              </div>
-            )}
+          {/* TOP NAV (centered, subdued) */}
+          <header className="mx-auto flex max-w-[980px] items-center justify-center pt-6">
+            <nav className="flex items-center gap-10 text-[12px] tracking-[0.22em] text-neutral-600">
+              <a className="hover:text-neutral-900" href="#platform">
+                PLATFORM
+              </a>
+              <a className="hover:text-neutral-900" href="#solutions">
+                SOLUTIONS
+              </a>
+              <a className="hover:text-neutral-900" href="#resources">
+                RESOURCES
+              </a>
+            </nav>
           </header>
 
-          {/* HERO */}
-          <main className="pt-16 pb-20">
-            <div className="grid gap-10">
-              {/* industrial image well (center focus) */}
-              <section className="relative overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-50">
-                {/* replace this with your industrial image later */}
-                <div className="aspect-[16/7] w-full">
-                  <div className="h-full w-full bg-gradient-to-br from-neutral-100 via-white to-neutral-200" />
-                </div>
+          {/* CENTER HERO */}
+          <main className="mx-auto flex max-w-[980px] flex-col items-center justify-center pt-16">
+            {/* minimal brand identity */}
+            <div className="text-center">
+              <div className="text-[12px] tracking-[0.22em] text-neutral-500">
+                VIA AUSTER
+              </div>
+              <h1 className="mt-4 text-[28px] font-medium tracking-tight">
+                Executive industrial systems.
+              </h1>
+              <p className="mx-auto mt-4 max-w-[560px] text-[14px] leading-7 text-neutral-600">
+                Confidence, not hype. Trust and competence first.
+              </p>
+            </div>
 
-                {/* subtle “tech edge” hint without being loud */}
-                <div className="pointer-events-none absolute inset-0">
-                  <div className="absolute left-6 top-6 h-10 w-10 rounded-full border border-neutral-300/70" />
-                  <div className="absolute right-8 bottom-8 h-16 w-16 rounded-full border border-neutral-300/50" />
-                  <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-neutral-200/60" />
-                </div>
-
-                <div className="absolute inset-0 flex items-center justify-center px-6">
-                  <div className="max-w-3xl text-center">
-                    {/* double-stack logo feel */}
-                    <div className="text-[12px] tracking-[0.35em] text-neutral-500">
-                      VIA AUSTER
+            {/* CENTER IMAGE PLACEHOLDER (this is the “weird video thing” replacement) */}
+            <div className="mt-10 w-full">
+              <div className="mx-auto aspect-[16/9] w-full max-w-[820px] overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100">
+                {/* If you have an image file later, replace this block with <img ... /> */}
+                <div className="flex h-full w-full items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-[11px] tracking-[0.22em] text-neutral-500">
+                      HERO VISUAL
                     </div>
-                    <h1 className="mt-6 text-[44px] leading-[1.05] tracking-[-0.02em] text-neutral-900 md:text-[58px]">
-                      Design, Engineering,
-                      <br />
-                      and Intentional Craft
-                    </h1>
-                    <p className="mx-auto mt-6 max-w-2xl text-[14px] leading-7 text-neutral-600">
-                      A studio focused on clarity, durability, and quiet excellence — across
-                      physical products, digital systems, and built environments.
-                    </p>
-
-                    {/* underline-style cues instead of a footer */}
-                    <div className="mt-10 flex items-center justify-center gap-10">
-                      {NAV.map((item) => (
-                        <a
-                          key={item.label}
-                          href={item.href}
-                          className="group text-[11px] tracking-[0.24em] text-neutral-600 hover:text-neutral-900"
-                        >
-                          <span className="inline-block pb-2">{item.label}</span>
-                          <span className="block h-px w-0 bg-neutral-300 transition-all group-hover:w-full" />
-                        </a>
-                      ))}
+                    <div className="mt-2 text-[13px] text-neutral-600">
+                      Placeholder until the factory image is dropped in
                     </div>
                   </div>
                 </div>
-              </section>
+              </div>
+            </div>
 
-              {/* ABOUT / WORK / CONTACT anchors (no footer) */}
-              <section id="about" className="pt-6">
-                <div className="grid gap-3">
-                  <div className="text-[11px] tracking-[0.24em] text-neutral-500">ABOUT</div>
-                  <p className="max-w-3xl text-[14px] leading-7 text-neutral-700">
-                    Minimal, durable, and precise. We build systems that hold up — visually,
-                    structurally, and operationally.
-                  </p>
-                </div>
-              </section>
-
-              <section id="work" className="pt-6">
-                <div className="grid gap-4">
-                  <div className="text-[11px] tracking-[0.24em] text-neutral-500">WORK</div>
-                  <div className="grid gap-4 md:grid-cols-3">
-                    {["Industrial", "Digital", "Built"].map((label) => (
-                      <div key={label} className="rounded-2xl border border-neutral-200 p-5">
-                        <div className="text-[12px] tracking-[0.22em] text-neutral-600">
-                          {label.toUpperCase()}
-                        </div>
-                        <div className="mt-3 text-[13px] leading-6 text-neutral-700">
-                          Placeholder block — we’ll swap in real case studies and imagery.
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </section>
-
-              <section id="contact" className="pt-6">
-                <div className="grid gap-3">
-                  <div className="text-[11px] tracking-[0.24em] text-neutral-500">CONTACT</div>
-                  <p className="text-[14px] leading-7 text-neutral-700">
-                    Add your preferred contact method here (email, form, or Calendly link).
-                  </p>
-                </div>
-              </section>
+            {/* minimal CTA row (optional but helps balance like the reference pages) */}
+            <div className="mt-10 flex items-center gap-3">
+              <a
+                href="#contact"
+                className="rounded-full border border-neutral-300 px-5 py-2 text-[12px] tracking-[0.18em] text-neutral-700 hover:border-neutral-500 hover:text-neutral-900"
+              >
+                CONTACT
+              </a>
+              <a
+                href="#about"
+                className="rounded-full bg-neutral-900 px-5 py-2 text-[12px] tracking-[0.18em] text-white hover:bg-neutral-800"
+              >
+                ABOUT
+              </a>
             </div>
           </main>
         </div>
