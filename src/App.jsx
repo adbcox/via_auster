@@ -1,7 +1,7 @@
 import React from "react";
 
 // Hero image is served from /public. Swap the file and/or path when you have the final asset.
-const HERO_SRC ="/hero.png";
+const HERO_SRC = "/hero.png";
 
 function IconButton({ label }) {
   return (
@@ -27,13 +27,8 @@ function LeftRail() {
         <div className="h-24 w-px bg-neutral-300" />
       </div>
 
-      {/* Social */}
-      <div className="flex flex-col items-center gap-3">
-        <IconButton label="IN" />
-        <IconButton label="IG" />
-        <IconButton label="X" />
-        <IconButton label="GH" />
-      </div>
+      {/* Center rail intentionally kept quiet (no social icons) */}
+      <div aria-hidden className="h-full" />
 
       {/* Bottom spacer line */}
       <div className="flex flex-col items-center gap-4">
@@ -48,20 +43,22 @@ function RightRail() {
     <aside className="absolute right-0 top-0 z-20 h-full w-[140px]">
       {/* Vertical guide lines (Abbey-style) */}
       <div className="absolute right-8 top-0 h-full w-[84px]">
+        {/* Four rails to create three equal columns */}
         <div className="absolute left-0 top-0 h-full w-px bg-neutral-300" />
-        <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-neutral-300" />
+        <div className="absolute left-1/3 top-0 h-full w-px -translate-x-1/2 bg-neutral-300" />
+        <div className="absolute left-2/3 top-0 h-full w-px -translate-x-1/2 bg-neutral-300" />
         <div className="absolute right-0 top-0 h-full w-px bg-neutral-300" />
       </div>
 
       {/* Top menu aligned between the guides */}
-      <nav className="absolute right-8 top-10 flex w-[84px] items-start justify-between text-[12px] tracking-[0.18em] uppercase text-neutral-500">
+      <nav className="absolute right-8 top-10 grid w-[84px] grid-cols-3 place-items-center text-[12px] tracking-[0.18em] uppercase text-neutral-500">
         <a className="hover:text-neutral-800" href="#">Home</a>
         <a className="hover:text-neutral-800" href="#">About</a>
         <a className="hover:text-neutral-800" href="#">Work</a>
       </nav>
 
       {/* Bottom rotated links (footer nav moved to right spine) */}
-      <div className="absolute right-8 bottom-10 flex w-[84px] items-end justify-between">
+      <div className="absolute right-8 bottom-10 grid w-[84px] grid-cols-3 place-items-center">
         <a
           href="#"
           className="origin-bottom-left -rotate-90 whitespace-nowrap text-[11px] tracking-[0.18em] uppercase text-neutral-500 hover:text-neutral-800"
@@ -102,12 +99,16 @@ export default function App() {
           {/* Narrative hero lines */}
           <div className="text-center">
             <h1 className="mx-auto max-w-[720px] text-center text-4xl font-light tracking-tight text-stone-900 sm:text-6xl">
-            Technology Enablement Platform
-          </h1>
-          <p className="mx-auto mt-4 max-w-[740px] text-center text-base leading-relaxed text-stone-600 sm:text-lg">
-            <span className="font-medium text-stone-800">Via Auster enables direct, informed access to technology and manufacturing capability.</span>
-            <span className="block mt-3">Via Auster helps organizations clarify technology needs, access real capability, and remove unnecessary complexity—so decisions are grounded, supply paths are direct, and technology supports real objectives.</span>
-          </p>
+              Technology Enablement Platform
+            </h1>
+            <p className="mx-auto mt-4 max-w-[740px] text-center text-base leading-relaxed text-stone-600 sm:text-lg">
+              <span className="font-medium text-stone-800">
+                Via Auster enables direct, informed access to technology and manufacturing capability.
+              </span>
+              <span className="mt-3 block">
+                Via Auster helps organizations clarify technology needs, access real capability, and remove unnecessary complexity—so decisions are grounded, supply paths are direct, and technology supports real objectives.
+              </span>
+            </p>
           </div>
 
           {/* Hero image (replaces the “weird video frame”) */}
