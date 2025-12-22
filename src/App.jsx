@@ -1,7 +1,7 @@
 import React from "react";
 
 // Hero image is served from /public. Swap the file and/or path when you have the final asset.
-const HERO_SRC = "/hero-placeholder.svg";
+const HERO_SRC = "/hero.png";
 
 function IconButton({ label }) {
   return (
@@ -95,19 +95,19 @@ export default function App() {
           {/* Keep the top header *off* the page per your note (no extra header line). */}
 
           <header className="text-center">
-            <div className="text-[11px] tracking-[0.3em] uppercase text-neutral-500">Via Auster</div>
+            <div className="text-[10px] tracking-[0.28em] uppercase text-neutral-500">Technology should never be the barrier.</div>
+            <div className="mt-2 text-[11px] tracking-[0.3em] uppercase text-neutral-500">Via Auster</div>
           </header>
 
           {/* Narrative hero lines */}
           <div className="text-center">
-            <h1 className="text-[38px] leading-[1.05] tracking-tight md:text-[52px]">
-              Design, Engineering, and Intentional<br className="hidden md:block" />
-              Craft
-            </h1>
-            <p className="mx-auto mt-4 max-w-[720px] text-[14px] leading-6 text-neutral-600 md:text-[15px]">
-              Via Auster is a studio focused on clarity, durability, and quiet excellence — across physical products, digital
-              systems, and built environments.
-            </p>
+            <h1 className="mx-auto max-w-[720px] text-center text-4xl font-light tracking-tight text-stone-900 sm:text-6xl">
+            Technology Enablement Platform
+          </h1>
+          <p className="mx-auto mt-4 max-w-[740px] text-center text-base leading-relaxed text-stone-600 sm:text-lg">
+            <span className="font-medium text-stone-800">Via Auster enables direct, informed access to technology and manufacturing capability.</span>
+            <span className="block mt-3">Via Auster helps organizations clarify technology needs, access real capability, and remove unnecessary complexity—so decisions are grounded, supply paths are direct, and technology supports real objectives.</span>
+          </p>
           </div>
 
           {/* Hero image (replaces the “weird video frame”) */}
