@@ -1,4 +1,8 @@
-/* DO NOT CHANGE LAYOUT VALUES UNLESS YOU ARE TUNING AFTER THE RESET */
+/* VIA AUSTER — AZIZ RESET (v2)
+   - lock viewport (no scroll) for the proof hero
+   - hero is exactly 100vh
+   - center media blends/floats more like Aziz
+*/
 :root{
   --bg:#efefee;
   --ink:#111;
@@ -8,11 +12,13 @@
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
+
 body{
   margin:0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background:var(--bg);
   color:var(--ink);
+  overflow: hidden; /* stop extra scroll */
 }
 
 .page{
@@ -30,10 +36,7 @@ body{
   align-items:flex-start;
   gap: 22px;
 }
-.brand{
-  text-decoration:none;
-  color:var(--ink);
-}
+.brand{ text-decoration:none; color:var(--ink); }
 .brand-mark{
   font-weight:500;
   letter-spacing:0.06em;
@@ -119,16 +122,16 @@ body{
   text-transform: uppercase;
 }
 
-/* HERO (Aziz-like: huge type + center object) */
+/* HERO (locked to viewport) */
 .hero{
   position:relative;
-  height: calc(100vh - 26px - 26px); /* viewport-ish */
-  min-height: 560px;
+  height: 100vh;
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
+/* Center object/media */
 .hero-media{
   position:absolute;
   width: 520px;
@@ -136,10 +139,12 @@ body{
   height: auto;
   inset: 50% auto auto 50%;
   transform: translate(-50%,-48%);
-  opacity: 0.98;
-  filter: saturate(0.92) contrast(1.02);
   pointer-events:none;
   user-select:none;
+
+  mix-blend-mode: multiply;
+  opacity: 0.95;
+  filter: saturate(0.9) contrast(1.05);
 }
 
 .hero-copy{
@@ -224,6 +229,5 @@ body{
   .main{ padding: 18px 16px 30px 16px; }
   .topnav{ padding: 8px 10px; gap: 10px; }
   .topnav__item{ font-size: 11px; }
-  .hero{ min-height: 520px; }
   .hero-media{ width: 340px; }
 }
