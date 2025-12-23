@@ -1,12 +1,83 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Via Auster</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Via Auster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Using a clean neutral sans; swap if your site already sets fonts globally -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="page">
+    <!-- LEFT RAIL -->
+    <aside class="left-rail" aria-label="Left rail">
+      <div class="left-top">
+        <a class="brand" href="/" aria-label="Via Auster home">
+          <!-- Replace with your existing logo asset if needed -->
+          <span class="brand-mark">VA</span>
+        </a>
+      </div>
+
+      <div class="left-mid" aria-hidden="true">
+        <div class="rail-line"></div>
+        <div class="rail-dot rail-dot--top"></div>
+        <div class="rail-dot rail-dot--bot"></div>
+      </div>
+
+      <nav class="left-social" aria-label="Social links">
+        <a class="icon-btn" href="#" aria-label="LinkedIn">in</a>
+        <a class="icon-btn" href="#" aria-label="Instagram">ig</a>
+        <a class="icon-btn" href="#" aria-label="X">x</a>
+        <a class="icon-btn" href="#" aria-label="GitHub">gh</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main" role="main">
+      <header class="topbar">
+        <nav class="topnav" aria-label="Top navigation">
+          <a href="/" class="topnav__item">Home</a>
+          <a href="/about" class="topnav__item">About</a>
+          <a href="/work" class="topnav__item">Works</a>
+        </nav>
+      </header>
+
+      <section class="hero" aria-label="Hero">
+        <!-- DO NOT TOUCH ANYTHING EXCEPT THE IMAGE SRC BELOW -->
+        <img class="hero-media" src="./assets/center-image.jpg" alt="" />
+
+        <div class="hero-copy">
+          <div class="hero-kicker">Hi! I'm</div>
+          <h1 class="hero-title">
+            Technology Enablement<br/>
+            Platform
+          </h1>
+          <p class="hero-sub">
+            Via Auster enables direct, informed access to technology and manufacturing capability.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- RIGHT RAIL -->
+    <aside class="right-rail" aria-label="Right rail">
+      <div class="right-lines" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+
+      <!-- Vertical text placeholders; keep letters-only as requested -->
+      <div class="right-vert">
+        <div class="right-vert__nav" aria-hidden="true">
+          <span>H</span><span>A</span><span>W</span>
+        </div>
+        <div class="right-vert__name" aria-hidden="true">
+          <span>V</span><span>I</span><span>A</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</body>
 </html>
