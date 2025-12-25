@@ -41,6 +41,18 @@ body{
   line-height:1;
   display:inline-block;
 }
+.hero-image {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 10px;
+}
+
+.hero-image img {
+  width: min(520px, 80vw);
+  height: auto;
+  max-height: 42svh;
+  object-fit: contain;
+}
 
 .left-mid{
   position:relative;
